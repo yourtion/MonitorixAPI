@@ -1,13 +1,17 @@
 <?php
 include_once('config.php');
 
-function getUrl($when = "1day", $mode = "localhost",$graph = "all" , $color="black"){
+function getUrl(){
 	if(USER != "" and PASSWD !=""){
 		$url = "http://".USER.":".PASSWD."@".HOST.PATH;
 	}else{
 		$url = "http://".HOST.PATH;
 	}
-	return $url."-cgi/monitorix.cgi?mode=".$mode."&graph=".$graph."&when=".$when."&color=".$color;
+	return $url;
+}
+
+function getPageUrl($when = "1day", $mode = "localhost",$graph = "all" , $color="black"){
+	return getUrl()."-cgi/monitorix.cgi?mode=".$mode."&graph=".$graph."&when=".$when."&color=".$color;
 }
 
 function imgUrl($imgurl){
