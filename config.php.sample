@@ -1,0 +1,5 @@
+<?php
+define('HOST', 'HOST');//Example: yourdomain.com without http:// and /monitorix
+define('PATH', '/monitorix');//Your monitorix path default /monitorix without the last /
+define('USER', '');
+define('PASSWD', '');
