@@ -23,3 +23,23 @@ function pageToJson($url){
 	}
 	return json_encode($resualt);
 }
+
+function indexToJson($url){
+	$html = file_get_html($url);
+	$graph = $html->find('select[name=graph]');
+	$optgroup = $graph[0]->find('optgroup');
+	$result=array();
+	$when = array("1day"=>"Daily","1week" => "Weekly","1month" => "Monthly","1year" => "Yearly");
+	$out = array();
+	foreach ($optgroup as $k1 => $element) {
+		//echo $element-> label;
+		$in =array();
+		foreach($element->find('option') as $k2 => $element2){
+			$in[$element2->value] = $element2->plaintext;
+		}
+		$out[$element-> label] = $in;
+	}
+	$result['when'] = $when;
+	$result['graph'] = $out;
+	return json_encode($result);
+}
