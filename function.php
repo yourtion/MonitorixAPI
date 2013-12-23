@@ -1,28 +1,32 @@
 <?php
 include_once('config.php');
 
-function getUrl(){
-	if(USER != "" and PASSWD !=""){
-		$url = "http://".USER.":".PASSWD."@".HOST.PATH;
-	}else{
-		$url = "http://".HOST.PATH;
+function getUrl()
+{
+	if (USER != "" and PASSWD != "") {
+		$url = "http://" . USER . ":" . PASSWD . "@" . HOST . PATH;
+	} else {
+		$url = "http://" . HOST . PATH;
 	}
 	return $url;
 }
 
-function getPageUrl($when = "1day", $mode = "localhost",$graph = "all" , $color="black"){
-	return getUrl()."-cgi/monitorix.cgi?mode=".$mode."&graph=".$graph."&when=".$when."&color=".$color;
+function getPageUrl($when = "1day", $graph = "all", $mode = "localhost", $color = "black")
+{
+	return getUrl() . "-cgi/monitorix.cgi?mode=" . $mode . "&graph=" . $graph . "&when=" . $when . "&color=" . $color;
 }
 
-function imgUrl($imgurl){
-	if(USER != "" and PASSWD !=""){
-		return str_replace("http://".HOST,"http://".USER.":".PASSWD."@".HOST,$imgurl);
-	}else{
+function imgUrl($imgurl)
+{
+	if (USER != "" and PASSWD != "") {
+		return str_replace("http://" . HOST, "http://" . USER . ":" . PASSWD . "@" . HOST, $imgurl);
+	} else {
 		return $imgurl;
 	}
 }
 
-function souceToName($souce){
+function souceToName($souce)
+{
 	$map = array(
 		"system1" => "System load",
 		"system2" => "Active processes",
@@ -156,9 +160,9 @@ function souceToName($souce){
 		"int2" => "Core activity",
 		"int3" => "Interrupt activity"
 	);
-	preg_match('/\/([^\/]+\.[a-z]+)[^\/]*$/',$souce,$imgName0);
-	$imgName1 = explode(".",$imgName0[1]);
-	$imgName = substr($imgName1[0],0,-1);
+	preg_match('/\/([^\/]+\.[a-z]+)[^\/]*$/', $souce, $imgName0);
+	$imgName1 = explode(".", $imgName0[1]);
+	$imgName = substr($imgName1[0], 0, -1);
 	return $map[$imgName];
 }
 
