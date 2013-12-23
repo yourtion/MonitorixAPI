@@ -20,7 +20,9 @@ If you have web Authenticate please config the USER and PASSWD.
 
 ### How to use?
 access `index.php` without parameter you can get all the option from Monitorix
+
 Success return:
+
 	{
 		when: {
 			1day: "Daily",
@@ -37,6 +39,7 @@ Success return:
 			........
 		}
 	}
+
 
 ### License
 
